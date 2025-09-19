@@ -1,13 +1,20 @@
 .PHONY: install
 install: ## Install the virtual environment and install the pre-commit hooks
 	@echo "🚀 Creating virtual environment using uv"
-	@uv sync
+	@uv sync --extra dev
+
+.PHONY: format
+format: ## Format the code using ruff
+	@echo "🚀 Formatting code: Running ruff"
+	@ruff format .
+	@ruff check --fix .
 
 .PHONY: check
 check: ## Run code quality tools.
 	@echo "🚀 Checking lock file consistency with 'pyproject.toml'"
 	@uv lock --locked
 	@echo "🚀 Linting code: Running pre-commit"
+	@uv run pre-commit run --all-files
 	@echo "🚀 Static type checking: Running mypy"
 	@uv run mypy
 
@@ -30,7 +37,7 @@ clean-build: ## Clean build artifacts
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors
-	@uv run mkdocs build -s
+	@uv run mkdocs build
 
 .PHONY: docs
 docs: ## Build and serve the documentation

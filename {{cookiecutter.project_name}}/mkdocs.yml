@@ -18,10 +18,26 @@ plugins:
           paths: [
             "{{cookiecutter.package_name}}"
             ]
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: Chinese
+          build: true
+  - macros:
+      j2_variable_start_string: '[['
+      j2_variable_end_string: ']]'
+
 theme:
   name: material
-  feature:
-    tabs: true
+  features:
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -44,9 +60,41 @@ extra:
   social:
     - icon: fontawesome/brands/git-alt
       link: https://{{cookiecutter.git_server}}/{{cookiecutter.author_username}}/{{cookiecutter.project_name}}
+  alternate:
+    - name: English
+      link: en
+      lang: en
+    - name: Chinese
+      link: zh/
+      lang: zh
+  url:
+    prefix: '.'
+    videos: /{{cookiecutter.project_name}}
 
 markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
   - toc:
       permalink: true
   - pymdownx.arithmatex:
       generic: true
+  - pymdownx.betterem:
+      smart_enable: underscore
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
