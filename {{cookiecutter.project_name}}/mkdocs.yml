@@ -62,10 +62,10 @@ extra:
       link: https://{{cookiecutter.git_server}}/{{cookiecutter.author_username}}/{{cookiecutter.project_name}}
   alternate:
     - name: English
-      link: en
+      link: /{{cookiecutter.project_name}}/
       lang: en
     - name: Chinese
-      link: zh/
+      link: /{{cookiecutter.project_name}}/zh/
       lang: zh
   url:
     prefix: '.'
